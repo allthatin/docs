@@ -182,14 +182,6 @@
             "description": "이름",
             "type": "string"
           },
-          "email": {
-            "description": "이메일",
-            "type": "string"
-          },
-          "password": {
-            "description": "패스워드",
-            "type": "password"
-          },
           "token": {
             "description": "토큰",
             "type": "string"
