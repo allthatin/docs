@@ -1,28 +1,29 @@
 ---
-title: 'Member'
-description: 'Example section for showcasing API endpoints'
+title: '회원 관리 API'
+description: '회원 CRUD를 위한 api 입니다'
 ---
 
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  각각의 메소드별로 어드민 권한이 필요할 수 있습니다\
+  아래 내역에서 확인하세요.
 </Note>
 
 ## Welcome
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+ATICO API 문서 입니다\
+[OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
 
 <Card
-  title="Plant Store Endpoints"
+  title="ATICO GIT"
   icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
+  href="https://github.com/allthatin/atico"
 >
-  View the OpenAPI specification file
+  API GIT 본문을 확인하세요
 </Card>
 
-## Authentication
+## Auth 인증
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+어드민 권한이 필요한 api는 Bearer tokens을 설정해야합니다.
 
 ```json
 "security": [

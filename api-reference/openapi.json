@@ -19,29 +19,38 @@
     }
   ],
   "paths": {
-    "/member": {
+    "/member/signup": {
       "get": {
-        "description": "모든 유저 정보를 가져옵니다. ( Admin 권한 필요 )",
+        "description": "회원가입",
         "parameters": [
           {
-            "name": "size",
+            "name": "email",
             "in": "query",
-            "description": "Pagination 사이즈",
+            "description": "email을 입력하세요",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "text",
+              "format": "char"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "password를 입력하세요(3글자 이상)",
+            "schema": {
+              "type": "password",
+              "format": "char"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "response",
+            "description": "회원가입 성공",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/Signup"
                   }
                 }
               }
@@ -59,65 +68,39 @@
           }
         }
       },
+      
+    "/member/login": {
       "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+        "description": "로그인",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
+            "name": "email",
+            "in": "query",
+            "description": "email을 입력하세요",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "text",
+              "format": "char"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "password를 입력하세요",
+            "required": true,
+            "schema": {
+              "type": "password",
+              "format": "char"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
+          "200": {
+            "description": "로그인 성공",
             "content": {}
           },
           "400": {
-            "description": "unexpected error",
+            "description": "로그인 에러",
             "content": {
               "application/json": {
                 "schema": {
@@ -132,41 +115,25 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
+      "Signup": {
         "required": [
-          "name"
+          "email","password"
         ],
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
+          "email": {
+            "description": "email",
             "type": "string"
+          },
+          "password": {
+            "description": "password",
+            "type": "password"
           },
           "tag": {
             "description": "Tag to specify the type",
             "type": "string"
           }
         }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
       },
       "Error": {
         "required": [
