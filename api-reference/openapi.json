@@ -178,12 +178,28 @@
         ],
         "type": "object",
         "properties": {
-          "name": {
+          "nickname": {
             "description": "이름",
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
+          "email": {
+            "description": "이메일",
+            "type": "string"
+          },
+          "password": {
+            "description": "패스워드",
+            "type": "password"
+          },
+          "token": {
+            "description": "토큰",
+            "type": "string"
+          },
+          "result": {
+            "description": "결과",
+            "type": "string"
+          },
+          "message": {
+            "description": "응답 메시지",
             "type": "string"
           }
         }
@@ -195,14 +211,14 @@
           },
           {
             "required": [
-              "id"
+              "email","password"
             ],
             "type": "object",
             "properties": {
-              "id": {
-                "description": "회원 ID",
-                "type": "integer",
-                "format": "int64"
+              "email": {
+                "description": "EMAIL",
+                "type": "string",
+                "format": "char"
               }
             }
           }
