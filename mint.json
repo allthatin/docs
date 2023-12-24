@@ -62,10 +62,11 @@
       "pages": ["api-reference/introduction"]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "회원 관리",
       "pages": [
         "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
+        "api-reference/endpoint/signup",
+        "api-reference/endpoint/login",
         "api-reference/endpoint/delete"
       ]
     }
