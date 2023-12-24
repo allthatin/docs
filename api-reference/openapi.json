@@ -22,26 +22,15 @@
     "/member/signup": {
       "post": {
         "description": "회원가입",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "description": "email을 입력하세요",
-            "schema": {
-              "type": "text",
-              "format": "char"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "password를 입력하세요(3글자 이상)",
-            "schema": {
-              "type": "password",
-              "format": "char"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewMember"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "회원가입 성공",
@@ -50,7 +39,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Signup"
+                    "$ref": "#/components/schemas/Member"
                   }
                 }
               }
@@ -115,9 +104,9 @@
   },
   "components": {
     "schemas": {
-      "Signup": {
+      "Member": {
         "required": [
-          "email","password"
+          "email"
         ],
         "type": "object",
         "properties": {
@@ -128,10 +117,23 @@
           "password": {
             "description": "password",
             "type": "password"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
+          }        
+        }
+      },
+      "NewMember": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "email",
             "type": "string"
+          },
+          "password": {
+            "description": "password",
+            "type": "password"
           }
         }
       },
