@@ -21,12 +21,12 @@
   "paths": {
     "/member": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "description": "회원리스트 조회",
         "parameters": [
           {
-            "name": "limit",
+            "name": "size",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "pagination 사이즈",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -100,9 +100,9 @@
     },
     "/member/login": {
       "post": {
-        "description": "Creates a new Member in the store",
+        "description": "로그인",
         "requestBody": {
-          "description": "Member to add to the store",
+          "description": "로그인",
           "content": {
             "application/json": {
               "schema": {
@@ -114,7 +114,7 @@
         },
         "responses": {
           "200": {
-            "description": "Member response",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
@@ -179,7 +179,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "The name of the Member",
+            "description": "이름",
             "type": "string"
           },
           "tag": {
@@ -200,7 +200,7 @@
             "type": "object",
             "properties": {
               "id": {
-                "description": "Identification number of the Member",
+                "description": "회원 ID",
                 "type": "integer",
                 "format": "int64"
               }
