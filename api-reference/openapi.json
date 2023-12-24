@@ -20,7 +20,7 @@
   ],
   "paths": {
     "/member/signup": {
-      "get": {
+      "post": {
         "description": "회원가입",
         "parameters": [
           {
@@ -159,4 +159,5 @@
       }
     }
   }
+}
 }
