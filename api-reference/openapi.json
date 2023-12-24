@@ -182,6 +182,14 @@
             "description": "이름",
             "type": "string"
           },
+          "email": {
+            "description": "이메일",
+            "type": "string"
+          },
+          "password": {
+            "description": "패스워드",
+            "type": "string"
+          },
           "token": {
             "description": "토큰",
             "type": "string"
@@ -210,7 +218,7 @@
               "email": {
                 "description": "EMAIL",
                 "type": "string",
-                "format": "char"
+                "format": "email"
               },
               "password": {
                 "description": "PASSWORD",
