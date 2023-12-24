@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "ATICO API STORE",
-    "description": "ATICO API 입니다",
+    "title": "OpenAPI Plant Store",
+    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
     "license": {
       "name": "MIT"
     },
@@ -19,27 +19,29 @@
     }
   ],
   "paths": {
-    "/member/signup": {
-      "post": {
-        "description": "회원가입",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewMember"
-              }
+    "/member": {
+      "get": {
+        "description": "Returns all plants from the system that the user has access to",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "회원가입 성공",
+            "description": "Plant response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Member"
+                    "$ref": "#/components/schemas/Plant"
                   }
                 }
               }
@@ -56,40 +58,68 @@
             }
           }
         }
-      },
-      
+      }
+    },
     "/member/login": {
       "post": {
-        "description": "로그인",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "description": "email을 입력하세요",
-            "required": true,
-            "schema": {
-              "type": "text",
-              "format": "char"
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
             }
           },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/member/{id}": {
+      "delete": {
+        "description": "Deletes a single plant based on the ID supplied",
+        "parameters": [
           {
-            "name": "password",
-            "in": "query",
-            "description": "password를 입력하세요",
+            "name": "id",
+            "in": "path",
+            "description": "ID of plant to delete",
             "required": true,
             "schema": {
-              "type": "password",
-              "format": "char"
+              "type": "integer",
+              "format": "int64"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "로그인 성공",
+          "204": {
+            "description": "Plant deleted",
             "content": {}
           },
           "400": {
-            "description": "로그인 에러",
+            "description": "unexpected error",
             "content": {
               "application/json": {
                 "schema": {
@@ -104,38 +134,41 @@
   },
   "components": {
     "schemas": {
-      "Member": {
+      "Plant": {
         "required": [
-          "email"
+          "name"
         ],
         "type": "object",
         "properties": {
-          "email": {
-            "description": "email",
+          "name": {
+            "description": "The name of the plant",
             "type": "string"
           },
-          "password": {
-            "description": "password",
-            "type": "password"
-          }        
-        }
-      },
-      "NewMember": {
-        "required": [
-          "email",
-          "password"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "description": "email",
+          "tag": {
+            "description": "Tag to specify the type",
             "type": "string"
-          },
-          "password": {
-            "description": "password",
-            "type": "password"
           }
         }
+      },
+      "NewPlant": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Plant"
+          },
+          {
+            "required": [
+              "id"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Identification number of the plant",
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        ]
       },
       "Error": {
         "required": [
@@ -161,5 +194,4 @@
       }
     }
   }
-}
 }
