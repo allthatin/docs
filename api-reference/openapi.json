@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "OpenAPI Member Store",
+    "description": "A sample API that uses a Member store as an example to demonstrate features in the OpenAPI specification",
     "license": {
       "name": "MIT"
     },
@@ -35,13 +35,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Member response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/Member"
                   }
                 }
               }
@@ -60,15 +60,15 @@
         }
       }
     },
-    "/member/login": {
+    "/member/signup": {
       "post": {
-        "description": "Creates a new plant in the store",
+        "description": "회원가입 ",
         "requestBody": {
-          "description": "Plant to add to the store",
+          "description": "회원가입",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/NewMember"
               }
             }
           },
@@ -76,11 +76,49 @@
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "Member response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/member/login": {
+      "post": {
+        "description": "Creates a new Member in the store",
+        "requestBody": {
+          "description": "Member to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewMember"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Member response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
                 }
               }
             }
@@ -100,12 +138,12 @@
     },
     "/member/{id}": {
       "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+        "description": "Deletes a single Member based on the ID supplied",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID of plant to delete",
+            "description": "ID of Member to delete",
             "required": true,
             "schema": {
               "type": "integer",
@@ -115,7 +153,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Plant deleted",
+            "description": "Member deleted",
             "content": {}
           },
           "400": {
@@ -134,14 +172,14 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
+      "Member": {
         "required": [
           "name"
         ],
         "type": "object",
         "properties": {
           "name": {
-            "description": "The name of the plant",
+            "description": "The name of the Member",
             "type": "string"
           },
           "tag": {
@@ -150,10 +188,10 @@
           }
         }
       },
-      "NewPlant": {
+      "NewMember": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Plant"
+            "$ref": "#/components/schemas/Member"
           },
           {
             "required": [
@@ -162,7 +200,7 @@
             "type": "object",
             "properties": {
               "id": {
-                "description": "Identification number of the plant",
+                "description": "Identification number of the Member",
                 "type": "integer",
                 "format": "int64"
               }
