@@ -174,7 +174,7 @@
     "schemas": {
       "Member": {
         "required": [
-          "name"
+          "nicknamae"
         ],
         "type": "object",
         "properties": {
