@@ -224,27 +224,23 @@
         }
       },
       "NewMember": {
-        
-          
-          
-            "required": [
-              "email","password"
-            ],
-            "type": "object",
-            "properties": {
-              "email": {
-                "description": "EMAIL",
-                "type": "string",
-                "format": "email"
-              },
-              "password": {
-                "description": "PASSWORD",
-                "type": "string",
-                "format": "password"
-              }
-            }
+        "required": [
+          "email","password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "EMAIL",
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "description": "PASSWORD",
+            "type": "string",
+            "format": "password"
           }
-        
+        }
+      }
       },
       "Error": {
         "required": [
