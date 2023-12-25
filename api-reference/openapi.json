@@ -106,7 +106,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMember"
+                "$ref": "#/components/schemas/Login"
               }
             }
           },
@@ -204,12 +204,29 @@
           }
         }
       },
-      "NewMember": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Member"
+      "Login": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "EMAIL",
+            "type": "string",
+            "format": "email"
           },
-          {
+          "password": {
+            "description": "PASSWORD",
+            "type": "string",
+            "format": "password"
+          }
+        }
+      },
+      "NewMember": {
+        
+          
+          
             "required": [
               "email","password"
             ],
@@ -227,7 +244,7 @@
               }
             }
           }
-        ]
+        
       },
       "Error": {
         "required": [
